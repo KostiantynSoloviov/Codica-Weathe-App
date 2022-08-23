@@ -43,7 +43,7 @@ export const CityAutocomplete: React.FC<CitySearchProps> = ({
 
   const handleSelect = (cityOption: CityOption) => {
     dispatch(setCityAsync(cityOption.value));
-    setCityName(' ');
+    setCityName('');
   };
 
   return (
@@ -58,10 +58,9 @@ export const CityAutocomplete: React.FC<CitySearchProps> = ({
       options={cityName ? options : []}
       filterOptions={(optionList) => optionList}
       getOptionLabel={(option) => (option as CityOption).label.toString()}
-      onChange={(event, value) => handleSelect(value as CityOption)}
+      onChange={(_event, value) => handleSelect(value as CityOption)}
       onFocus={toggleIsFocused}
       onBlur={toggleIsFocused}
-      inputValue={cityName}
       renderOption={(props, { label, value: { lat, lon } }) => {
         return (
           <li {...props} key={`${label}${lat}${lon}`}>
